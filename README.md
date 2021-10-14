@@ -18,9 +18,8 @@ python manage.py runserver 127.0.0.1:8000
 ```
 
 ### TODO
-1. No query records from search engine
-2. Integration with Google
-3. Closed document search
+1. Integration with Google
+2. Closed document search
 
 -----
 
