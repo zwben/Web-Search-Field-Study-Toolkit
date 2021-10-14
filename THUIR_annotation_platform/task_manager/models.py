@@ -43,35 +43,37 @@ class Query(models.Model):
     task_annotation = models.ForeignKey(
         TaskAnnotation,
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
         )
 
-    partition_status = models.BooleanField(default=False)
-    annotation_status = models.BooleanField(default=False)
+    partition_status = models.BooleanField(default=False, null=True, blank=True)
+    annotation_status = models.BooleanField(default=False, null=True, blank=True)
 
-    query_string = models.CharField(max_length=1000)
-    start_timestamp = models.IntegerField()
-    life_start = models.IntegerField()
+    query_string = models.CharField(max_length=1000, null=True, blank=True)
+    start_timestamp = models.IntegerField(null=True, blank=True)
+    life_start = models.IntegerField(null=True, blank=True)
 
     # reformulation interface
     # 1: SERP inputbox, 2: SERP related queries (query suggestion),
     # 3: SERP related entities, 4: top searched queries, 5: others (other pages, sponsored search, ads)
-    interface = models.IntegerField(default=1)
+    interface = models.IntegerField(default=1, null=True, blank=True)
 
     # user expectation, pre-query
-    diversity = models.IntegerField(default=-1)  # 0->4
-    habit = models.CharField(max_length=50)  #
-    redundancy = models.IntegerField(default=-1)  # 0->4
-    difficulty = models.IntegerField(default=-1)  # 0->4
-    gain = models.IntegerField(default=-1)  # 0->9
-    effort = models.IntegerField(default=-1)  # 0->9
+    diversity = models.IntegerField(default=-1, null=True, blank=True)  # 0->4
+    habit = models.CharField(max_length=50, null=True, blank=True)  #
+    redundancy = models.IntegerField(default=-1, null=True, blank=True)  # 0->4
+    difficulty = models.IntegerField(default=-1, null=True, blank=True)  # 0->4
+    gain = models.IntegerField(default=-1, null=True, blank=True)  # 0->9
+    effort = models.IntegerField(default=-1, null=True, blank=True)  # 0->9
 
     # user expectation confirmation, post-query
-    diversity_confirm = models.IntegerField(default=-1)
-    habit_confirm = models.CharField(max_length=50)
-    redundancy_confirm = models.IntegerField(default=-1)
-    difficulty_confirm = models.IntegerField(default=-1)
-    gain_confirm = models.IntegerField(default=-1)
-    effort_confirm = models.IntegerField(default=-1)
+    diversity_confirm = models.IntegerField(default=-1, null=True, blank=True)
+    habit_confirm = models.CharField(max_length=50, null=True, blank=True)
+    redundancy_confirm = models.IntegerField(default=-1, null=True, blank=True)
+    difficulty_confirm = models.IntegerField(default=-1, null=True, blank=True)
+    gain_confirm = models.IntegerField(default=-1, null=True, blank=True)
+    effort_confirm = models.IntegerField(default=-1, null=True, blank=True)
 
 
 class PageLog(models.Model):
@@ -83,23 +85,25 @@ class PageLog(models.Model):
     belong_query = models.ForeignKey(
         Query,
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
         )
-    page_type = models.CharField(max_length=50)
-    page_title = models.CharField(max_length=50)
-    origin = models.CharField(max_length=50)
-    url = models.CharField(max_length=1000)
-    referrer = models.CharField(max_length=1000)
-    serp_link = models.CharField(max_length=1000)
-    html = models.CharField(max_length=1000000)
-    start_timestamp = models.IntegerField()
-    end_timestamp = models.IntegerField()
-    dwell_time = models.IntegerField()
-    page_timestamps = models.CharField(max_length=1000000)
-    query_string = models.CharField(max_length=1000)
-    page_id = models.IntegerField()
-    mouse_moves = models.CharField(max_length=1000000)
-    clicked_results = models.CharField(max_length=1000000)
-    clicked_others = models.CharField(max_length=1000000)
+    page_type = models.CharField(max_length=50, null=True, blank=True)
+    page_title = models.CharField(max_length=50, null=True, blank=True)
+    origin = models.CharField(max_length=50, null=True, blank=True)
+    url = models.CharField(max_length=1000, null=True, blank=True)
+    referrer = models.CharField(max_length=1000, null=True, blank=True)
+    serp_link = models.CharField(max_length=1000, null=True, blank=True)
+    html = models.CharField(max_length=1000000, null=True, blank=True)
+    start_timestamp = models.IntegerField(null=True, blank=True)
+    end_timestamp = models.IntegerField(null=True, blank=True)
+    dwell_time = models.IntegerField(null=True, blank=True)
+    page_timestamps = models.CharField(max_length=1000000, null=True, blank=True)
+    query_string = models.CharField(max_length=1000, null=True, blank=True)
+    page_id = models.IntegerField(null=True, blank=True)
+    mouse_moves = models.CharField(max_length=1000000, null=True, blank=True)
+    clicked_results = models.CharField(max_length=1000000, null=True, blank=True)
+    clicked_others = models.CharField(max_length=1000000, null=True, blank=True)
 
 
 class QueryAnnotation(models.Model):  # !!
