@@ -2,10 +2,19 @@
 <script>
     var baidu_query = document.getElementById("kw");
     var sogou_query = document.getElementById("upquery");
+    var goolge_query = document.getElementsByName("q")[0];
+    var bing_query = document.getElementById("sb_form_q");
+
     if (baidu_query != undefined) {
         baidu_query.setAttribute('value', "{{ query}}");
     }
     if (sogou_query != undefined) {
         sogou_query.setAttribute('value', "{{ query}}");
     }
+    if (goolge_query != undefined) {
+        goolge_query.setAttribute('value', "{{ query}}");
+    }
+    if (bing_query != undefined) {
+        bing_query.setAttribute('value', "{{ query}}");
+    }    
 </script>
