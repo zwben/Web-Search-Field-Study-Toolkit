@@ -153,7 +153,7 @@ var viewState = {
 
         var origin = "???";
         var current_url = window.location.href;
-        var temp = current_url.match(/www\.(baidu)?(sogou)?(so)?\.com\/(s|web)/g);
+        var temp = current_url.match(/www\.(bing)?(google)?(baidu)?(sogou)?(so)?\.com\/(search|s|web)/g);
         if (temp != null) { //SERP页面
             switch (temp[0]) {
                 case "www.sogou.com/web":
@@ -166,6 +166,14 @@ var viewState = {
 
                 case "www.so.com/s":
                     origin = "360";
+                    break;
+
+                case "www.google.com/search":
+                    origin = "google";
+                    break;
+
+                case "www.bing.com/search":
+                    origin = "bing";
                     break;
 
                 default:
@@ -214,7 +222,7 @@ var viewState = {
         mRec.end();
         var origin = "???";
         var current_url = window.location.href;
-        var temp = current_url.match(/www\.(baidu)?(sogou)?(so)?\.com\/(s|web)/g);
+        var temp = current_url.match(/www\.(bing)?(google)?(baidu)?(sogou)?(so)?\.com\/(search|s|web)/g);
         if (temp != null) {
             switch (temp[0]) {
                 case "www.sogou.com/web":
@@ -225,6 +233,12 @@ var viewState = {
                     break;
                 case "www.so.com/s":
                     origin = "360";
+                    break;
+                case "www.google.com/search":
+                    origin = "google";
+                    break;
+                case "www.bing.com/search":
+                    origin = "bing";
                     break;
 
                 default:
@@ -240,14 +254,14 @@ var viewState = {
         msg.referrer = current_referrer;
         msg.serp_link = current_serp_link;
 
-        var temp1 = msg.referrer.match(/www\.(baidu)?(sogou)?(so)?\.com\/(s|web)/g);
+        var temp1 = msg.referrer.match(/www\.(bing)?(google)?(baidu)?(sogou)?(so)?\.com\/(search|s|web)/g);
         var tmp1 = 0, tmp2 = 0, isfromserp = 0;
         if (temp1 != null) {
-            if ((temp1[0] === "www.sogou.com/web") || (temp1[0] === "www.baidu.com/s") || (temp1[0] === "www.so.com/s")) {
+            if ((temp1[0] === "www.bing.com/search") || (temp1[0] === "www.google.com/search") || (temp1[0] === "www.sogou.com/web") || (temp1[0] === "www.baidu.com/s") || (temp1[0] === "www.so.com/s")) {
                 tmp1 = 1;
             }
         }
-        if ((msg.referrer === 'https://www.baidu.com/') || (msg.referrer === 'https://www.sogou.com/') || (msg.referrer === 'https://www.so.com/')) {
+        if ((msg.referrer === 'https://www.bing.com/') || (msg.referrer === 'https://www.google.com/') || (msg.referrer === 'https://www.baidu.com/') || (msg.referrer === 'https://www.sogou.com/') || (msg.referrer === 'https://www.so.com/')) {
             tmp2 = 1;
         }
         if (tmp1 === 1 || tmp2 === 1) {

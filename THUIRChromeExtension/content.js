@@ -10,7 +10,7 @@ var current_serp_link = "";
 var this_interface = 1;
 
 function storage_link() {
-    var temp_ref = current_referrer.match(/www\.(baidu)?(sogou)?(so)?\.com\/(s|web)/g);
+    var temp_ref = current_referrer.match(/www\.(bing)?(google)?(baidu)?(sogou)?(so)?\.com\/(search|s|web)/g);
     if (temp_ref != null) {
         current_serp_link = current_url;
         chrome.runtime.sendMessage({
@@ -57,7 +57,7 @@ chrome.runtime.sendMessage({log_status: "request"}, function (response) {
             }
             else {
                 var origin = "???";
-                var temp = current_url.match(/www\.(baidu)?(sogou)?(so)?\.com\/(s|web)/g);
+                var temp = current_url.match(/www\.(bing)?(google)?(baidu)?(sogou)?(so)?\.com\/(search|s|web)/g);
                 if (temp != null) {
                     switch (temp[0]) {
                         case "www.sogou.com/web":
@@ -70,6 +70,14 @@ chrome.runtime.sendMessage({log_status: "request"}, function (response) {
 
                         case "www.so.com/s":
                             origin = "360";
+                            break;
+
+                        case "www.google.com/search":
+                            origin = "google";
+                            break;
+
+                        case "www.bing.com/search":
+                            origin = "bing";
                             break;
 
                         default:

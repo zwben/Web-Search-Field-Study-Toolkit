@@ -24,7 +24,7 @@
   ],
   "background": {
     "scripts": [
-      "jquery-3.3.1.min.js",
+      "jquery-3.6.0.min.js",
       "pako_deflate.min.js",
       "background.js"
     ]
@@ -35,7 +35,7 @@
         "<all_urls>"
       ],
       "js": [
-        "jquery-3.3.1.min.js",
+        "jquery-3.6.0.min.js",
         "pako_deflate.min.js",
         "mouseMove.js",
         "basic.js",
@@ -45,6 +45,24 @@
       ],
       "run_at": "document_start"
     },
+    {
+      "matches": [
+        "*://www.bing.com/search*"
+      ],
+      "js": [
+        "bing.js"
+      ],
+      "run_at": "document_start"
+    },        
+    {
+      "matches": [
+        "*://www.google.com/search*"
+      ],
+      "js": [
+        "google.js"
+      ],
+      "run_at": "document_start"
+    },    
     {
       "matches": [
         "*://www.baidu.com/s*"
