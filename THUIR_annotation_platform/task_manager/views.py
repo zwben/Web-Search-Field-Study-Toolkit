@@ -342,6 +342,29 @@ def page_annotation(user, request, page_id):
                 'clicked_ids': clicked_ids
             }
             )
+    if page.origin == 'google':
+         return render(
+            request,
+            'page_annotation_google.html',
+            {
+                'query': page.query_string,
+                'html': page.html,
+                'page_id': page_id,
+                'clicked_ids': clicked_ids
+            }
+            )
+    if page.origin == 'bing':
+         return render(
+            request,
+            'page_annotation_bing.html',
+            {
+                'query': page.query_string,
+                'html': page.html,
+                'page_id': page_id,
+                'clicked_ids': clicked_ids
+            }
+            )
+       
 
 
 @csrf_exempt
