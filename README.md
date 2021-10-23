@@ -1,5 +1,11 @@
 # Web-Search-Field-Study-Toolkit
 
+### TODO
+Interface improvement
+
+## Updates 10/22/2021
+It can record activities on Bing now!
+
 ## Updates 09/17/2021
 Environment compatibility:  
 Python 3.9.2  
@@ -16,10 +22,6 @@ python manage.py migrate
 ```bash
 python manage.py runserver 127.0.0.1:8000
 ```
-
-### TODO
-1. Integration with Google
-2. Closed document search
 
 -----
 
