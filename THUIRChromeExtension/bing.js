@@ -1,15 +1,12 @@
 if (debug) console.log("Bing Main Page is Loaded!");
 var baseUrl = "http://127.0.0.1:8000/";
 
-document.querySelectorAll('script[type="text/javascript"]').forEach(e => e.remove())
-document.querySelectorAll('div[style="display:none"]').forEach(e => e.remove())
+//document.querySelectorAll('script[type="text/javascript"]').forEach(e => e.remove())
+//document.querySelectorAll('div[style="display:none"]').forEach(e => e.remove())
 
 mPage.initialize = function () {
     mPage.preRate = -1;
-    var random_seed = Math.random();
-    if (random_seed <= 0.3) {
-        mPage.pre_rate();
-    }
+    mPage.pre_rate();
     mPage.click_results = new Array();
     mPage.click_others = new Array();
     mPage.init_content();
@@ -28,14 +25,14 @@ mPage.init_content = function () {
 };
 
 mPage.pre_rate = function () {
-    if (mPage.page_id >= 1) {
+    if (mPage.page_id > 1) {
         return;
     }
     var start_timestamp = pageManager.start_timestamp;
     var isConfirm = window.confirm("Bonus! Please annotate for the query expectation!");
     if (isConfirm === true) {
         mPage.preRate = 1;
-        window.open (baseUrl + "/task/pre_query_annotation/", 'newwindow','height=1000,width=1200,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+        window.open (baseUrl + "task/pre_query_annotation/" + start_timestamp, 'newwindow','height=1000,width=1200,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
     }
 };
 
