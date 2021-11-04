@@ -172,7 +172,7 @@ def pre_query_annotation(user, request, timestamp):
         # print diversity, habit, redundancy, difficulty, gain, effort
 
         new_query = Query()
-        new_query.task_annotation = TaskAnnotation.objects.filter(annotation_status=True)[0]
+        new_query.task_annotation = TaskAnnotation.objects.filter(annotation_status=True).first()
         new_query.partition_status = False
         new_query.annotation_status = False
         new_query.life_start = int(time.time())

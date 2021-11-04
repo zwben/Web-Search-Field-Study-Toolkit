@@ -78,7 +78,7 @@ def store_data(message):
                 page_log.belong_query = belong_query
         else:
             page_log.belong_query = Query.objects.filter(annotation_status=True).first()
-        if not message['url'].startswith('127.0.0.1:8000'):   # ip_to_launch should be set manually
+        if not message['url'].startswith('127.0.0.1'):   # ip_to_launch should be set manually
             page_log.save()
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
