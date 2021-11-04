@@ -83,7 +83,7 @@ class SignupForm(forms.Form):
         )
     )
     sex = forms.CharField(
-        required=True,
+        required=False,
         label=u'Gender',
         widget=forms.TextInput(
             attrs={
@@ -93,7 +93,7 @@ class SignupForm(forms.Form):
         )
     )
     age = forms.IntegerField(
-        required=True,
+        required=False,
         label=u'Age',
         widget=forms.NumberInput(
             attrs={
@@ -103,7 +103,7 @@ class SignupForm(forms.Form):
         )
     )
     phone = forms.CharField(
-        required=True,
+        required=False,
         label=u'Phone Number',
         widget=forms.TextInput(
             attrs={
@@ -113,7 +113,7 @@ class SignupForm(forms.Form):
         )
     )
     email = forms.EmailField(
-        required=True,
+        required=False,
         label=u'E-mail Address',
         widget=forms.EmailInput(
             attrs={
@@ -123,7 +123,7 @@ class SignupForm(forms.Form):
         )
     )
     field = forms.CharField(
-        required=True,
+        required=False,
         label=u'Occupation',
         widget=forms.TextInput(
             attrs={
