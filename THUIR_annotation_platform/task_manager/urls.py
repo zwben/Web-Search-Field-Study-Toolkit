@@ -10,6 +10,7 @@ urlpatterns = [
     path('annotation/', views.annotation_home),
     re_path(r'^task_annotation1/([0-9]+)/$', views.task_annotation1),
     re_path(r'^pre_query_annotation/([0-9]+)/$', views.pre_query_annotation),
+    re_path(r'^post_query_annotation/([0-9]+)/$', views.post_query_annotation),
     re_path(r'^query_annotation/([0-9]+)/$', views.query_annotation),
     re_path(r'^task_annotation2/([0-9]+)/$', views.task_annotation2),
     re_path(r'^show_page/([0-9]+)/$', views.show_page),

@@ -72,7 +72,7 @@ def store_data(message):
                     new_query.save()
                 page_log.belong_query = new_query
             else:
-                nearest_log = sorted(PageLog.objects.filter(user=user, page_type='SERP', query_string=message['query']), key=lambda item: item.start_timestamp, reverse=True).first()
+                nearest_log = sorted(PageLog.objects.filter(user=user, page_type='SERP', query_string=message['query']), key=lambda item: item.start_timestamp, reverse=True)[0]
                 belong_query = nearest_log.belong_query
                 belong_query.life_start = int(time.time())
                 page_log.belong_query = belong_query
@@ -83,7 +83,7 @@ def store_data(message):
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)
-        print(exc_type, fname, exc_tb.tb_lineno)
+        print ('exception!!', e)
 
 def store_page_annotation(message, page_id):
     try:

@@ -49,31 +49,41 @@ class Query(models.Model):
 
     partition_status = models.BooleanField(default=False, null=True, blank=True)
     annotation_status = models.BooleanField(default=False, null=True, blank=True)
+    current_status = models.BooleanField(default=False, null=True, blank=True)
 
     query_string = models.CharField(max_length=1000, null=True, blank=True)
     start_timestamp = models.IntegerField(null=True, blank=True)
+    end_timestamp = models.IntegerField(null=True, blank=True)
     life_start = models.IntegerField(null=True, blank=True)
-
+    life_end = models.IntegerField(null=True, blank=True)
     # reformulation interface
     # 1: SERP inputbox, 2: SERP related queries (query suggestion),
     # 3: SERP related entities, 4: top searched queries, 5: others (other pages, sponsored search, ads)
     interface = models.IntegerField(default=1, null=True, blank=True)
 
     # user expectation, pre-query
-    diversity = models.IntegerField(default=-1, null=True, blank=True)  # 0->4
-    habit = models.CharField(max_length=50, null=True, blank=True)  #
-    redundancy = models.IntegerField(default=-1, null=True, blank=True)  # 0->4
-    difficulty = models.IntegerField(default=-1, null=True, blank=True)  # 0->4
-    gain = models.IntegerField(default=-1, null=True, blank=True)  # 0->9
-    effort = models.IntegerField(default=-1, null=True, blank=True)  # 0->9
+    useful_pages = models.IntegerField(default=-1, null=True, blank=True)
+    clicking_results = models.IntegerField(default=-1, null=True, blank=True)
+    spending_time = models.IntegerField(default=-1, null=True, blank=True)    
+    # diversity = models.IntegerField(default=-1, null=True, blank=True)  # 0->4
+    # habit = models.CharField(max_length=50, null=True, blank=True)  #
+    # redundancy = models.IntegerField(default=-1, null=True, blank=True)  # 0->4
+    # difficulty = models.IntegerField(default=-1, null=True, blank=True)  # 0->4
+    # gain = models.IntegerField(default=-1, null=True, blank=True)  # 0->9
+    # effort = models.IntegerField(default=-1, null=True, blank=True)  # 0->9
 
     # user expectation confirmation, post-query
-    diversity_confirm = models.IntegerField(default=-1, null=True, blank=True)
-    habit_confirm = models.CharField(max_length=50, null=True, blank=True)
-    redundancy_confirm = models.IntegerField(default=-1, null=True, blank=True)
-    difficulty_confirm = models.IntegerField(default=-1, null=True, blank=True)
-    gain_confirm = models.IntegerField(default=-1, null=True, blank=True)
-    effort_confirm = models.IntegerField(default=-1, null=True, blank=True)
+    useful_information = models.IntegerField(default=-1, null=True, blank=True)
+    effort = models.IntegerField(default=-1, null=True, blank=True)
+    satisfaction = models.IntegerField(default=-1, null=True, blank=True)
+    recommendation = models.IntegerField(default=-1, null=True, blank=True)
+    problem = models.CharField(max_length=50, null=True, blank=True)
+    # diversity_confirm = models.IntegerField(default=-1, null=True, blank=True)
+    # habit_confirm = models.CharField(max_length=50, null=True, blank=True)
+    # redundancy_confirm = models.IntegerField(default=-1, null=True, blank=True)
+    # difficulty_confirm = models.IntegerField(default=-1, null=True, blank=True)
+    # gain_confirm = models.IntegerField(default=-1, null=True, blank=True)
+    # effort_confirm = models.IntegerField(default=-1, null=True, blank=True)
 
 
 class PageLog(models.Model):

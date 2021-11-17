@@ -162,12 +162,15 @@ def task_annotation1(user, request, task_id):
 @require_login
 def pre_query_annotation(user, request, timestamp):
     if request.method == 'POST':
-        diversity = request.POST.get('diversity')
-        habit = request.POST.get('habit_str')
-        redundancy = request.POST.get('redundancy')
-        difficulty = request.POST.get('difficulty')
-        gain = request.POST.get('gain')
-        effort = request.POST.get('effort')
+        useful_pages = request.POST.get('useful_pages')
+        clicking_results = request.POST.get('clicking_results')
+        spending_time = request.POST.get('spending_time')
+        # diversity = request.POST.get('diversity')
+        # habit = request.POST.get('habit_str')
+        # redundancy = request.POST.get('redundancy')
+        # difficulty = request.POST.get('difficulty')
+        # gain = request.POST.get('gain')
+        # effort = request.POST.get('effort')
         # unique_timstamp = request.POST.get('timestamp')
         # print diversity, habit, redundancy, difficulty, gain, effort
 
@@ -175,14 +178,18 @@ def pre_query_annotation(user, request, timestamp):
         new_query.task_annotation = TaskAnnotation.objects.filter(annotation_status=True).first()
         new_query.partition_status = False
         new_query.annotation_status = False
+        new_query.current_status = True
         new_query.life_start = int(time.time())
         new_query.user = user
-        new_query.diversity = diversity
-        new_query.habit = habit
-        new_query.redundancy = redundancy
-        new_query.difficulty = difficulty
-        new_query.gain = gain
-        new_query.effort = effort
+        new_query.useful_pages = useful_pages
+        new_query.clicking_results = clicking_results
+        new_query.spending_time = spending_time
+        # new_query.diversity = diversity
+        # new_query.habit = habit
+        # new_query.redundancy = redundancy
+        # new_query.difficulty = difficulty
+        # new_query.gain = gain
+        # new_query.effort = effort
         new_query.start_timestamp = timestamp
         new_query.save()
         # print 'new_query success!'
@@ -196,6 +203,37 @@ def pre_query_annotation(user, request, timestamp):
         }
         )
 
+@require_login
+def post_query_annotation(user, request, timestamp):
+    if request.method == 'POST':
+        useful_information = request.POST.get('useful_information')
+        effort = request.POST.get('effort')
+        satisfaction = request.POST.get('satisfaction')
+        recommendation = request.POST.get('recommendation')
+        problem = request.POST.get('problem_str')
+
+        query = Query.objects.filter(user=user, current_status=True).first()
+        query.current_status = False
+        query.life_end = int(time.time())
+        query.useful_information = useful_information
+        query.effort = effort
+        query.satisfaction = satisfaction
+        query.recommendation = recommendation
+        query.profile = problem
+
+        query.end_timestamp = timestamp
+        query.save()
+
+        # print 'query success!'
+        return HttpResponse('<html><body><script>window.close()</script></body></html>')
+
+    return render(
+        request,
+        'post_query_annotation.html',
+        {
+            'cur_user': user,
+        }
+        )
 
 @require_login
 def query_annotation(user, request, task_id):
@@ -225,21 +263,21 @@ def query_annotation(user, request, task_id):
             query__annotation.other_relation = other_relation
 
             # 触发expectation标注
-            if query.diversity != -1:
-                # print(request.POST.get('habit_str_' + str(query.id)))
-                diversity_confirm = request.POST.get('diversity_confirm_'+str(query.id))
-                habit_confirm = request.POST.get('habit_str_' + str(query.id))
-                redundancy_confirm = request.POST.get('redundancy_confirm_' + str(query.id))
-                difficulty_confirm = request.POST.get('difficulty_confirm_' + str(query.id))
-                gain_confirm = request.POST.get('gain_confirm_' + str(query.id))
-                effort_confirm = request.POST.get('effort_confirm_' + str(query.id))
-                query.diversity_confirm = diversity_confirm
-                query.habit_confirm = habit_confirm
-                query.redundancy_confirm = redundancy_confirm
-                query.difficulty_confirm = difficulty_confirm
-                query.gain_confirm = gain_confirm
-                query.effort_confirm = effort_confirm
-                query.save()
+            # if query.diversity != -1:
+            #     # print(request.POST.get('habit_str_' + str(query.id)))
+            #     diversity_confirm = request.POST.get('diversity_confirm_'+str(query.id))
+            #     habit_confirm = request.POST.get('habit_str_' + str(query.id))
+            #     redundancy_confirm = request.POST.get('redundancy_confirm_' + str(query.id))
+            #     difficulty_confirm = request.POST.get('difficulty_confirm_' + str(query.id))
+            #     gain_confirm = request.POST.get('gain_confirm_' + str(query.id))
+            #     effort_confirm = request.POST.get('effort_confirm_' + str(query.id))
+            #     query.diversity_confirm = diversity_confirm
+            #     query.habit_confirm = habit_confirm
+            #     query.redundancy_confirm = redundancy_confirm
+            #     query.difficulty_confirm = difficulty_confirm
+            #     query.gain_confirm = gain_confirm
+            #     query.effort_confirm = effort_confirm
+            #     query.save()
             query__annotation.save()
         return HttpResponseRedirect('/task/task_annotation2/'+str(task_id))
 
