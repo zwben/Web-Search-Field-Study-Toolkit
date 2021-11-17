@@ -56,15 +56,6 @@
     },        
     {
       "matches": [
-        "*://www.google.com/search*"
-      ],
-      "js": [
-        "google.js"
-      ],
-      "run_at": "document_start"
-    },    
-    {
-      "matches": [
         "*://www.baidu.com/s*"
       ],
       "js": [
