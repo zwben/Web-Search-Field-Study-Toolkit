@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-xs-offset-1 col-xs-10">
-            <form class="col-xs-12" id="query-form" action="" method="post" onsubmit="validateForms()" enctype='multipart/form-data'>
+            <form class="col-xs-12" id="query-form" action="" method="post" enctype='multipart/form-data'>
                 {% csrf_token %}
                 {% for query, prequery, query_annotation, pages_and_status in items_list %}
                     <div class="col-xs-12" style="border:1px dashed #000; border-radius:10px">
@@ -147,7 +147,7 @@
                                 )
                             </script>
                         </div>
-                        {% if query.diversity != -1 %}
+<!--                         {% if query.diversity != -1 %}
                         <label for="expectation_confirm_ratio"
                                class="ratio col-xs-12 list_row"><b>6. Please confirm the expectation for the current query after the search process.</b></label>
 
@@ -239,7 +239,7 @@
                         <script>
                             document.getElementsByName("effort_confirm_{{ query.id }}")[0].value = {{ query.effort_confirm }};
                         </script>
-                        {% endif %}
+                        {% endif %} -->
                     </div>
                     <div class="col-xs-12"><br/></div>
                 {% endfor %}
@@ -250,7 +250,7 @@
                 </div>
             </div>
         </div>
-        <script>
+        <!-- <script>
                function setDiversity(qid){
                    var diversity_val = document.getElementById("diversity_value_" + qid);
                    diversity_val.innerText = document.getElementsByName("diversity_confirm_" + qid)[0].value;
@@ -272,7 +272,7 @@
                        $("#habit_str_" + {{ query.id }}).val(checks);
                    {% endfor %}
                }
-        </script>
+        </script> -->
         <script>
             $(function () {
                 $('#query-btn').click(
@@ -303,26 +303,26 @@
                                     return
                                 }
 
-                                {% if query.diversity != -1 %}
-                                    var habit_confirm = $("[name='habit_confirm_{{ query.id }}']:checked");
-                                    var redundancy_confirm = $("[name='redundancy_confirm_{{ query.id }}']:checked");
-                                    var difficulty_confirm = $("[name='difficulty_confirm_{{ query.id }}']:checked");
-                                    if (habit_confirm.val() == null) {
-                                        alert('Please choose an expectation confirming value!');
-                                        $("[name='habit_confirm_{{ query.id }}']").focus();
-                                        return
-                                    }
-                                    if (redundancy_confirm.val() == null) {
-                                        alert('Please check a redundancy button!');
-                                        $("[name='redundancy_confirm_{{ query.id }}']").focus();
-                                        return
-                                    }
-                                    if (difficulty_confirm.val() == null) {
-                                        alert('Please check a difficulty button!');
-                                        $("[name='difficulty_confirm_{{ query.id }}']").focus();
-                                        return
-                                    }
-                                {% endif %}
+                                // {% if query.diversity != -1 %}
+                                //     var habit_confirm = $("[name='habit_confirm_{{ query.id }}']:checked");
+                                //     var redundancy_confirm = $("[name='redundancy_confirm_{{ query.id }}']:checked");
+                                //     var difficulty_confirm = $("[name='difficulty_confirm_{{ query.id }}']:checked");
+                                //     if (habit_confirm.val() == null) {
+                                //         alert('Please choose an expectation confirming value!');
+                                //         $("[name='habit_confirm_{{ query.id }}']").focus();
+                                //         return
+                                //     }
+                                //     if (redundancy_confirm.val() == null) {
+                                //         alert('Please check a redundancy button!');
+                                //         $("[name='redundancy_confirm_{{ query.id }}']").focus();
+                                //         return
+                                //     }
+                                //     if (difficulty_confirm.val() == null) {
+                                //         alert('Please check a difficulty button!');
+                                //         $("[name='difficulty_confirm_{{ query.id }}']").focus();
+                                //         return
+                                //     }
+                                // {% endif %}
                             {% endfor %}
                             if (confirm("Are you sure to submit all annotations?"))
                                 $('#query-form').submit();

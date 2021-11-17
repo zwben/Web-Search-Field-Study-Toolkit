@@ -6,7 +6,7 @@
         //document.querySelectorAll('script[type="text/javascript"]').forEach(e => e.remove())
         //document.querySelectorAll('div[style="display:none"]').forEach(e => e.remove())
 
-        var content_left = $("ol#b_results").children();
+        var content_left = $("h2");
         var content_right = $("ol#b_context");
 
     {#    if (content_right == undefined){#}
@@ -19,6 +19,7 @@
     {#    content_right.setAttribute("style", "padding-left:17px, display:block");#}
 
         content_right.empty();
+        $("div#end-btn").remove()
 
         var sb = $("#sbiarea")
         var content_ans = $("li.b_ans")
@@ -26,6 +27,8 @@
         content_ans.empty()
 
         document.getElementsByName("q")[0].setAttribute('value', "{{ query}}");
+
+        //content_right.append("<div id="annouse" style='overflow: auto'></div>")
 
         content_right.append("<div style='width: 540px'><b>1. The left side of the page is the search results, please drag the results you think are helpful in the search process to the corresponding position on the right side according to their usefulness; For results that you haven't seen or that you don't think will help you at all, you don't need to drag. To help you recall the search process, we've highlighted the results you clicked on below the results, but that doesn't mean you have to drag them.)</b></div><br />");
         for (var i = 3; i > 0; i--) {
@@ -48,7 +51,8 @@
 
         content_right.append("<div class='col-xs-12'><div id='page-btn' class='col-xs-6' style='border: 1px solid transparent;border-radius: 10px;font-size: 13px;padding: 6px 12px;text-align: center;color: #fff;background-color: #1abc9c;border-color: #1abc9c'>Submit</div></div>");
 
-        $("ol#b_context").css({"position":"fixed"})
+        content_right.css({"position":"fixed"})
+
         var dragElement = null;
         for (var i = 0; i < content_left.length; i++) {
             content_left[i].setAttribute("draggable", true);
