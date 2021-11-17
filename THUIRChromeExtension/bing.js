@@ -4,9 +4,26 @@ var baseUrl = "http://127.0.0.1:8000/";
 //document.querySelectorAll('script[type="text/javascript"]').forEach(e => e.remove())
 //document.querySelectorAll('div[style="display:none"]').forEach(e => e.remove())
 
+$(document).ready(function() {
+  $("li.b_ad").remove();
+  $("li.b_ans").remove();
+  $("div.pageRecoContainer").remove();
+  $("div.b_vlist2col").remove();
+  $("div.b_factrow").remove();
+  $("a.scs_icn").remove();
+  $("div#b_pole").remove();
+  $("footer#b_footer").remove();
+  $("[class^=b_ad]").remove()
+  $('a').attr('target', '_blank');
+  $("li.b_pag a").attr('target','')
+});
+
 mPage.initialize = function () {
     mPage.preRate = -1;
+    mPage.PostRate = -1;
+    mPage.page_id = parseInt($("a.sb_pagS").text());
     mPage.pre_rate();
+    mPage.post_rate();
     mPage.click_results = new Array();
     mPage.click_others = new Array();
     mPage.init_content();
@@ -25,15 +42,29 @@ mPage.init_content = function () {
 };
 
 mPage.pre_rate = function () {
-    if (mPage.page_id > 1) {
-        return;
-    }
+    var page_id = parseInt($("a.sb_pagS").text());
     var start_timestamp = pageManager.start_timestamp;
+    if (page_id > 1) {
+        return;}
     var isConfirm = window.confirm("Bonus! Please annotate for the query expectation!");
     if (isConfirm === true) {
         mPage.preRate = 1;
         window.open (baseUrl + "task/pre_query_annotation/" + start_timestamp, 'newwindow','height=1000,width=1200,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
     }
+    
+};
+
+mPage.post_rate = function () {
+    var start_timestamp = pageManager.start_timestamp;
+    var search_bar = $("form#sb_form")
+    search_bar.append("<div id='end-btn' style='border: 1px solid transparent;border-radius: 10px;font-size: 18px;padding: 6px 12px;text-align: center;color: #fff;background-color: #1abc9c;border-color: #1abc9c'>End query</div>");
+    $('#end-btn').click(
+    function () {
+        if (confirm("Are you sure to end this query?")) {
+            mPage.PostRate = 1;
+            window.open (baseUrl + "task/post_query_annotation/" + start_timestamp, 'newwindow','height=1000,width=1200,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+        }
+    })
 };
 
 setTimeout(mPage.init_content, 1500);
