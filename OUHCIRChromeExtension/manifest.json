@@ -1,0 +1,94 @@
+{
+  "name": "OUHCIR Chrome Extension",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "A simple chrome extension to collect user behaviors in a field study",
+  "icons": {
+    "16": "popup/hcir16.png",
+    "32": "popup/hcir32.png",
+    "64": "popup/hcir64.png",
+    "128": "popup/hcir128.png"
+  },
+  "browser_action": {
+    "default_title": "OUHCIR Chrome Extension",
+    "default_icon": "popup/hcir19.png",
+    "default_popup": "popup/popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "*://*/*",
+    "unlimitedStorage",
+    "storage",
+    "cookies",
+    "notifications"
+  ],
+  "background": {
+    "scripts": [
+      "jquery-3.6.0.min.js",
+      "pako_deflate.min.js",
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "jquery-3.6.0.min.js",
+        "pako_deflate.min.js",
+        "mouseMove.js",
+        "basic.js",
+        "page.js",
+        "content.js",
+        "general.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://www.bing.com/search*"
+      ],
+      "js": [
+        "bing.js"
+      ],
+      "run_at": "document_start"
+    },        
+    {
+      "matches": [
+        "*://www.google.com/search*"
+      ],
+      "js": [
+        "google.js"
+      ],
+      "run_at": "document_start"
+    },    
+    {
+      "matches": [
+        "*://www.baidu.com/s*"
+      ],
+      "js": [
+        "baidu.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://www.sogou.com/web*"
+      ],
+      "js": [
+        "sogou.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://www.so.com/s*"
+      ],
+      "js": [
+        "360.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}

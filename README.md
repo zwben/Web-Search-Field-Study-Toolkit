@@ -1,11 +1,5 @@
 # Web-Search-Field-Study-Toolkit
 
-### TODO
-Interface improvement
-
-## Updates 10/22/2021
-It can record activities on Bing now!
-
 ## Updates 09/17/2021
 Environment compatibility:  
 Python 3.9.2  
@@ -22,6 +16,11 @@ python manage.py migrate
 ```bash
 python manage.py runserver 127.0.0.1:8000
 ```
+
+### TODO
+1. No query records from search engine
+2. Integration with Google
+3. Closed document search
 
 -----
 
@@ -91,7 +90,7 @@ python manage.py runserver 0.0.0.0:8000
 * The baseURL in the extension should be the same with the base URL of the annotation platform.
 ```javascript
 var baseUrl = "http://127.0.0.1:8000";
-```  
+```
 * You should ensure that the chrome extention is on before the search, or nothing will be recorded.  
 
 <p align="center">

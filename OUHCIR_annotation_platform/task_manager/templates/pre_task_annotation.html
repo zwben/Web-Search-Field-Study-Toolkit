@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% block title %} Pre Search Questionaire {% endblock %}
+{% block content_title %} Pre Search Questionaire {% endblock %}
+{% block content %}
+<style>
+    table {
+        width: 50%;
+    }
+    td, th {
+      text-align: center;
+      width: 5%;
+    }
+</style>
+    <div class="row text-center">
+        <h3>
+            Pre Search Questionaire
+        </h3>
+    </div>
+    <div class="row">
+        <div class="col-xs-10">
+            <form class="col-xs-12" id="description-form" action="" method="post">
+                {% csrf_token %}
+                <label for="task_condition" class="col-xs-12 list_row"><b>1. Which task are you going to take?</b></label>
+                    <select name="task_condition">
+                        <option></option>
+                        <option value="0">
+                        <b>Warm up task:</b> Factual Amorphous  - HIV/AIDS</option>
+                        <option value="1">
+                        <b>Task 1:</b> CE/CO Copy Editing  - Coelacanths</option>
+                        <option value="2">
+                        <b>Task 2:</b> CE/ME Copy Editing  - Methane Clathrates</option>
+                        <option value="3">
+                        <b>Task 3:</b> SP/CO Story Pitch - Coelacanths</option>
+                        <option value="4">
+                        <b>Task 4:</b> SP/ME Story Pitch - Methane Clathrates</option>
+                        <option value="5">
+                        <b>Task 5:</b> RE/CO Article Development - Coelacanths</option>
+                        <option value="6">
+                        <b>Task 6:</b> RE/ME Article Development - Methane Clathrates</option>
+                        <option value="7">
+                        <b>Task 7:</b> IP/CO Interview Preparation - Coelacanths</option>
+                        <option value="8">
+                        <b>Task 8:</b> IP/ME Interview Preparation - Methane Clathrates</option>
+                    </select>
+                <script>
+                    $("option[value='{{ pre_survey.task_condition }}']").attr('selected','selected');
+                </script>
+
+                <label for="familarity" class="ratio col-xs-12 list_row"><b>2. How familiar are you with the topic of this task? </b></label>
+                    <div class="ratio col-xs-12 list_row">
+                        <table>
+                            <tr>
+                                <th>Not at all</th>
+                                <th></th>
+                                <tH></tH>                                
+                                <th>Somewhat</th>
+                                <th></th>
+                                <th></th>
+                                <th>Extremely</th>
+                            </tr>
+                            <tr>
+                            <td><label><input type="radio" name="familarity" value="1"/> 1</label></td>
+                            <td><label><input type="radio" name="familarity" value="2"/> 2</label></td>
+                            <td><label><input type="radio" name="familarity" value="3"/> 3</label></td>
+                            <td><label><input type="radio" name="familarity" value="4"/> 4</label></td>
+                            <td><label><input type="radio" name="familarity" value="5"/> 5</label></td>
+                            <td><label><input type="radio" name="familarity" value="6"/> 6</label></td>
+                            <td><label><input type="radio" name="familarity" value="7"/> 7</label></td>
+                            </tr>
+                        </table>
+                    </div>
+                <script>
+                    $("input:radio[name='familarity'][value='{{ pre_survey.familarity }}']").attr('checked','true');
+                </script>
+
+                <label for="pre_experience" class="ratio col-xs-12 list_row"><b>3. How much experience do you have with this kind of task?</b></label>
+                    <div class="ratio col-xs-12 list_row">
+                        <table>
+                            <tr>
+                                <th>Not at all</th>
+                                <th></th>
+                                <tH></tH>                                
+                                <th>Somewhat</th>
+                                <th></th>
+                                <th></th>
+                                <th>Extremely</th>
+                            </tr>
+                            <tr>
+                            <td><label><input type="radio" name="pre_experience" value="1"/> 1</label></td>
+                            <td><label><input type="radio" name="pre_experience" value="2"/> 2</label></td>
+                            <td><label><input type="radio" name="pre_experience" value="3"/> 3</label></td>
+                            <td><label><input type="radio" name="pre_experience" value="4"/> 4</label></td>
+                            <td><label><input type="radio" name="pre_experience" value="5"/> 5</label></td>
+                            <td><label><input type="radio" name="pre_experience" value="6"/> 6</label></td>
+                            <td><label><input type="radio" name="pre_experience" value="7"/> 7</label></td>
+                            </tr>
+                        </table>
+                    </div>
+                <script>
+                    $("input:radio[name='pre_experience'][value='{{ pre_survey.pre_experience }}']").attr('checked','true');
+                </script>
+
+                <label for="difficulty" class="ratio col-xs-12 list_row"><b>4. How difficult do you think it will be to find the information for this task? </b></label>
+                    <div class="ratio col-xs-12 list_row">
+                        <table>
+                            <tr>
+                                <th>Not at all</th>
+                                <th></th>
+                                <tH></tH>                                
+                                <th>Somewhat</th>
+                                <th></th>
+                                <th></th>
+                                <th>Extremely</th>
+                            </tr>
+                            <tr>
+                            <td><label><input type="radio" name="difficulty" value="1"/> 1</label></td>
+                            <td><label><input type="radio" name="difficulty" value="2"/> 2</label></td>
+                            <td><label><input type="radio" name="difficulty" value="3"/> 3</label></td>
+                            <td><label><input type="radio" name="difficulty" value="4"/> 4</label></td>
+                            <td><label><input type="radio" name="difficulty" value="5"/> 5</label></td>
+                            <td><label><input type="radio" name="difficulty" value="6"/> 6</label></td>
+                            <td><label><input type="radio" name="difficulty" value="7"/> 7</label></td>
+                            </tr>
+                        </table>
+                    </div>
+                <script>
+                    $("input:radio[name='difficulty'][value='{{ pre_survey.difficulty }}']").attr('checked','true');
+                </script>
+
+            </form>
+            <div class="col-xs-12">
+                <div id="description-btn" class="col-xs-12 submit-btn btn btn-primary">
+                    Submit
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                $('#description-btn').click(
+                        function () {
+                            var task_condition = $("select[name='task_condition']");
+                            var familarity = $("[name='familarity']:checked");
+                            var pre_experience = $("[name='pre_experience']:checked");
+                            var difficulty = $("[name='difficulty']:checked");
+
+                            if (task_condition.val() == '') {
+                                alert('Please select a task!');
+                                $("[name='task_condition']").focus();
+                                return
+                            }
+                            if (familarity.val() == null) {
+                                alert('Please choose a effort score!');
+                                $("[name='familarity']").focus();
+                                return
+                            }
+                            if (pre_experience.val() == null) {
+                                alert('Please choose a experience score!');
+                                $("[name='pre_experience']").focus();
+                                return
+                            }
+                            if (difficulty.val() == null) {
+                                alert('Please choose a difficulty score!');
+                                $("[name='difficulty']").focus();
+                                return
+                            }
+
+                            if (confirm("Are you sure to submit all annotations?"))
+                                $('#description-form').submit();
+                        }
+                );
+            });
+        </script>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+{% block title %} Task Homepage {% endblock %}
+{% block content_title %} Task Homepage {% endblock %}
+{% block content %}
+    <div class="row text-center">
+        <h3>
+            Task Homepage
+        </h3>
+    </div>
+    <div class="row">
+        <div class="col-xs-offset-3 col-xs-6 user_info">
+            <div class="user_info_row row">
+                <div class="info_label col-xs-offset-0 col-xs-12">
+                    Hello, {{ cur_user.username }}, here is your current annotation:
+                </div>
+            </div>
+            <div class="user_info_row row">
+                <div class="info_label col-xs-offset-0 col-xs-6">
+                    Number of annotated queries:
+                </div>
+                <div class="info_value col-xs-offest-6 col-xs-6">
+                    {{ annotation_num }}
+                </div>
+            </div>
+            <div class="user_info_row row">
+                <div class="info_label col-xs-offset-0 col-xs-6">
+                    Number of grouped but unannotated queries:
+                </div>
+                <div class="info_value col-xs-offest-6 col-xs-6">
+                    {{ partition_num }}
+                </div>
+            </div>
+            <div class="user_info_row row">
+                <div class="info_label col-xs-offset-0 col-xs-6">
+                    Number of ungrouped queries:
+                </div>
+                <div class="info_value col-xs-offest-6 col-xs-6">
+                    {{ remain_num }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="col-xs-offset-3 col-xs-6">
+        <div id="go-partition-btn" class="col-xs-12 submit-btn btn btn-block btn-lg btn-primary">
+            Click here to group queries
+        </div>
+        <div id="go-annotation-btn" class="col-xs-12 submit-btn btn btn-block btn-lg btn-primary">
+            Click here to annotate grouped queries
+        </div>
+    </div>
+    <br style="clear: both;">
+    <br>
+    <div class="row text-center">
+        <h4>Task Process</h4>
+    <div>
+        <div class="image"><img src="/static/img/task process1.png" alt="" style="width:40%;height:auto;"/></div>
+    </div>
+
+    <br style="clear: both;">
+    <br>
+    <div class="row text-center">
+        <h4 style="color:#eb9534">5-min warn up task</h4>
+    </div>
+    <div class="col-xs-offset-3 col-xs-6" id="warmup" style="font-size:24px;border:1px solid #eb9534">
+        <b>Factual Amorphous:</b> You need to write a class report on HIV/AIDS treatments in Africa. For this, you need to answer a central question: what are the current available treatments of HIV/AIDS in <i>China, Germany, USA, and Uganda</i>?
+        <br>
+        <h6 style="text-align: center;">
+            <a href="http://127.0.0.1:8000/task/pre_task_annotation">Enter this task</a>
+        </h6>        
+    </div>
+    <br style="clear: both;">
+    <div class="row text-center">
+        <h4>Task Descriptions</h4>
+    </div>
+    <div class="task_description row col-xs-offset-3 col-xs-6">
+        <div id="task1">
+            <h6><b>Task 1:</b> CE/CO Copy Editing  - Coelacanths</h6>
+                <details>
+                    <b>Your Assignment:</b> You are a copy editor at a newspaper and you have only 20 minutes to check the accuracy of six italicized underlined statements in the excerpt of a piece of news story below.<br>
+                    <b>Your Task:</b> <mark>Please find and save an authoritative page that either confirms or disconfirms each statement.</mark><br>
+                    The coelacanth ("see-la-kanth") is a 'living fossil' fish, thought to be long extinct before a specimen was <u><i>discovered in 1938 at East London, South Africa</i></u><sub> 1</sub>. Fourteen years later, the "discovery" of coelacanths was confirmed in the Comoro Islands, off the coast of Madagascar. <u><i>Forty six years after that, a new population was identified from at least two specimens caught off of North Sulawesi, Indonesia</i></u><sub> 2</sub>. In 1987, a submersible crew finally managed to obtain film footage of live coelacanths.<br>
+                    <u><i>Coelacanths are the size of humans</i></u><sub> 3</sub>. They are slate-blue when alive, with white flecks on the thick scales that cover their bodies. They live in the gloaming, around 200-400 meters below the surface, where light barely penetrates and few creatures venture. They spend their days sheltering in rocky caves in small groups, coming up to feed at night as the water above them cools. <u><i>Unlike most fish, they give birth to live young—small, perfectly formed baby coelacanths</i></u><sub> 4</sub>—and when disturbed they lift themselves into headstands, apparently using an electro-sensory organ in their snout to detect the presence of predators or prey.<br>
+                    <u><i>The handful of people who have seen them in their natural habitat talk of their glowing eyes and their gentle demeanor</i></u><sub> 5</sub>. They describe coelacanths moving with surprising grace, deploying their fanned fins in a diagonal formation—right fin in front, left trailing behind—that is similar to a lizard walking. Their blue and silver color provides excellent camouflage in the underwater cave homes covered in <u><i>sponges and oysters that they prefer to eat</i></u><sub> 6</sub>.<br>
+                    <b>*Please remember that you will have up to 20 minutes to search on this assignment, and you may stop whenever you think you have found enough information for this assignment within 20 minutes.</b>
+                    <br>
+                    <h6 style="text-align: center;">
+                    <a href="http://127.0.0.1:8000/task/pre_task_annotation">Enter this task</a>
+                    </h6>
+                </details>
+                <br>
+        </div>
+
+        <div id="task2">
+            <h6><b>Task 2:</b> CE/ME Copy Editing  - Methane Clathrates</h6>
+                <details>
+                    <b>Your Assignment:</b> You are a copy editor at a newspaper and you have only 20 minutes to check the accuracy of six italicized underlined statements in the excerpt of a piece of news story below.<br>
+                    <b>Your Task:</b> <mark>Please find and save an authoritative page that either confirms or disconfirms each statement.</mark><br>
+                    Arctic methane ‘time bomb’ could have huge economic costs.<br>
+                    Scientists say that the release of large amounts of methane from thawing permafrost in the Arctic could have huge economic impacts for the world. The researchers estimate that the climate effects of the release of this gas could cost <u><i>$60 trillion, roughly the size of the global economy in 2012</i></u><sub> 1</sub>. The impacts are most likely to be felt in developing countries they say.<br>
+                    Scientists have had concerns about the impact of rising temperatures on permafrost for many years. Large amounts of methane are concentrated in the frozen Arctic tundra but <u><i>are also found as semi-solid gas hydrates under the sea</i></u><sub> 2</sub>. Previous work has shown that the diminishing ice cover in the East Siberian Sea is allowing the waters to warm and the methane to leach out. <u><i>Scientists have found plumes of the gas up to a kilometer in diameter rising from these waters</i></u><sub> 3</sub>.<br>
+                    In this study, the researchers have attempted to put an economic price on the climate damage that these emissions of methane could cause. Methane is a powerful greenhouse gas, even though it lasts less than a decade in the atmosphere. Using an economic model very similar to the one used by Lord Stern in his 2006 review of the economics of climate change, the researchers examined the impact of the release of 50-gigatonnes of methane over a decade. They worked out that this would increase climate impacts such as flooding, sea level rise, damage to agriculture and human health to the tune of $60 trillion.<br>
+                    The researchers say their study is in marked contrast to other, more upbeat assessments of the economic benefits of warming in the Arctic region. It is thought that <u><i>up to 30% of the world's undiscovered gas and 13% of undiscovered oil lie in the waters</i></u><sub> 4</sub>. Transport companies are looking to send increasing numbers of ships through these fast melting seas. According to Lloyds of London, <u><i>investment in the Arctic could reach $100 billion within ten years</i></u><sub> 5</sub>.<br>
+                    But according to the new work, these benefits would be a fraction of the likely costs of a large scale methane emission. The authors say a release of methane on this scale could bring forward the date when global temperatures increase by 2C by between 15 and 35 years. Some scientists have cautioned that not enough is known about the likelihood of such a rapid release of methane. Even though it has been detected for a number of years, it has as yet not been found in the atmosphere in large amounts.
+                    "We are seeing increasing methane in the atmosphere. When you look at satellite imagery, for instance the MeToP satellite, <u><i>that's gone up significantly in the last three years and the place where the increase is happening most is over the Arctic</i></u><sub> 6</sub>," Prof Wadhams said.”<br>
+                    <b>*Please remember that you will have up to 20 minutes to search on this assignment, and you may stop whenever you think you have found enough information for this assignment within 20 minutes.</b>
+                    <br>
+                    <h6 style="text-align: center;">
+                    <a href="http://127.0.0.1:8000/task/pre_task_annotation">Enter this task</a>
+                    </h6>
+
+                </details>
+                <br>
+        </div>
+
+        <div id="task3">
+            <h6><b>Task 3:</b> SP/CO Story Pitch - Coelacanths</h6>
+                <details>
+                    <b>Your Assignment:</b> You are planning to pitch a science story to your editor and need to identify interesting facts about the coelacanth ("see-la-kanth"), a fish that dates from the time of dinosaurs and was thought to be extinct.<br>
+                    <b>Your Task:</b> <mark>Find and save web pages that contain the six most interesting facts about coelacanths and/or research about coelacanths and their preservation.</mark><br>
+                    <b>*Please remember that you will have up to 20 minutes to search on this assignment, and you may stop whenever you think you have found enough information for this assignment within 20 minutes.</b>                   
+                    <br>
+                    <h6 style="text-align: center;">
+                    <a href="http://127.0.0.1:8000/task/pre_task_annotation">Enter this task</a>
+                    </h6>
+                </details>
+                <br>
+        </div>
+
+        <div id="task4">
+            <h6><b>Task 4:</b> SP/ME Story Pitch - Methane Clathrates</h6>
+                <details>
+                    <b>Your Assignment:</b> You are planning to pitch a science and economics story to your editor and need to identify interesting facts about the economic impact of global warming on the Arctic region.<br>
+                    <b>Your Task:</b> <mark>Find and save web pages that contain the six most interesting facts about the world economic impact of global warming on the Arctic region.</mark><br>
+                    <b>*Please remember that you will have up to 20 minutes to search on this assignment, and you may stop whenever you think you have found enough information for this assignment within 20 minutes.</b>                   
+                    <br>
+                    <h6 style="text-align: center;">
+                    <a href="http://127.0.0.1:8000/task/pre_task_annotation">Enter this task</a>
+                    </h6>
+                </details>
+                <br>
+        </div>
+
+        <div id="task5">
+            <h6><b>Task 5:</b> RE/CO Article Development - Coelacanths</h6>
+                <details>
+                    <b>Your Assignment:</b> You are writing an article about coelacanths and conservation efforts. You have found an interesting article about coelacanths but in order to develop your article you need to be able to explain the relationship between key facts you have learned.<br>
+                    <b>Your Task:</b> <mark>In the following, there are five italicized passages. Please identify a relationship between any two of the facts and find an authoritative page that explains the relationship between the two italicized facts.</mark><br>
+                    “The coelacanth ("see-la-kanth") is a lobe-finned fish related to lungfish and to primitive tetrapods (animals with four limbs, like us). <u><i>They have a long fossil record from the Devonian to the Cretaceous — about 300 million years. But no coelacanth fossils have been discovered in sediments younger than the Cretaceous, about 70 million years ago</i></u><sub> 1</sub>. Yet a specimen was discovered in 1938 at East London, South Africa and <u><i>a number have been caught in shallow open waters of less than 100 meters</i></u><sub> 2</sub> since then. <u><i>The 'home' of the coelacanths is the Comoros Islands, a young West Africa volcanic island chain only 6.5 million years old</i></u><sub> 3</sub>, but a few have been caught elsewhere in West Africa and at least two in Indonesia. It is estimated there are only a thousand or so coelacanths in the world.<br>
+                    <u><i>Coelacanths are the size of humans, are believed to live for 100 years or more, and are poor swimmers</i></u><sub> 4</sub>. They are slate-blue when alive, with white flecks on the thick scales that cover their bodies. <u><i>They live in the gloaming, around 200-400 meters below the surface, where light barely penetrates and few creatures venture</i></u><sub> 5</sub>. They spend their days sheltering in rocky caves in small groups. Unlike most fish, they give birth to live young—small, perfectly formed baby coelacanths—and when disturbed they lift themselves into headstands, apparently using an electro-sensory organ in their snout to detect the presence of predators or prey.
+                    The handful of people who have seen them in their natural habitat talk of their glowing eyes and their gentle demeanor. They describe coelacanths moving with surprising grace, deploying their fanned fins in a diagonal formation—right fin in front, left trailing behind—that is similar to a lizard walking. Their blue and silver color provides excellent camouflage in the underwater cave homes.”<br>
+                    <b>*Please remember that you will have up to 20 minutes to search on this assignment, and you may stop whenever you think you have found enough information for this assignment within 20 minutes.</b>                   
+                    <br>
+                    <h6 style="text-align: center;">
+                    <a href="http://127.0.0.1:8000/task/pre_task_annotation">Enter this task</a>
+                    </h6>
+                </details>
+                <br>
+        </div>
+
+        <div id="task6">
+            <h6><b>Task 6:</b> RE/ME Article Development - Methane Clathrates</h6>
+                <details>
+                    <b>Your Assignment:</b> You are writing an article about the Arctic and global warming. You have found an interesting article about the potential for global warming to both increase economic development of the Arctic but also to accelerate and magnify the world economic impact of global warming. To develop your article you need to be able to explain the relationship between key facts you have learned.<br>
+                    <b>Your Task:</b> <mark>In the following, there are five italicized passages. Please identify a relationship between any two of the facts and find an authoritative page that explains the relationship between the two italicized facts.</mark><br>
+                    “There are economic benefits of warming in the Arctic region. <u><i>It is thought that up to 30% of the world's undiscovered gas and 13% of undiscovered oil lie in the waters</i></u><sub> 1</sub>. Transport companies are looking to send increasing numbers of ships through these fast melting seas. According to Lloyds of London, <u><i>investment in the Arctic could reach $100 billion within ten years</i></u><sub> 2</sub>.<br>
+                    There are also economic costs. Scientists have had concerns about the impact of rising temperatures on permafrost for many years. <u><i>Large amounts of methane are concentrated in the frozen Arctic tundra</i></u><sub> 3</sub>. Previous work has shown that the diminishing ice cover in the East Siberian Sea is allowing the waters to warm and the methane to leach out. Scientists have found plumes of the gas up to a kilometer in diameter rising from these waters.<br>
+                    <u><i>Methane lasts less than a decade in the atmosphere</i></u><sub> 4</sub>. Some scientists have cautioned that not enough is known about the likelihood of such a rapid release of methane. Even though it has been detected for a number of years, it has as yet not been found in the atmosphere in large amounts. <u><i>The release of 50-gigatonnes of methane over a decade would increase climate impacts such as flooding, sea level rise, damage to agriculture and human health to the tune of $60 trillion</i></u><sub> 5</sub>.<br>
+                    "We are seeing increasing methane in the atmosphere. When you look at satellite imagery, for instance the MeToP satellite, that's gone up significantly in the last three years and the place where the increase is happening most is over the Arctic," Prof Wadhams said.”<br>
+                    <b>*Please remember that you will have up to 20 minutes to search on this assignment, and you may stop whenever you think you have found enough information for this assignment within 20 minutes.</b>                   
+                    <br>
+                    <h6 style="text-align: center;">
+                    <a href="http://127.0.0.1:8000/task/pre_task_annotation">Enter this task</a>
+                    </h6>
+                </details>
+                <br>
+        </div>
+
+        <div id="task7">
+            <h6><b>Task 7:</b> IP/CO Interview Preparation - Coelacanths</h6>
+                <details>
+                    <b>Your Assignment:</b> You are writing an article that profiles a scientist and their research work. You are preparing to interview Mark Erdmann, a marine biologist, about coelacanths and conservation programs.<br>
+                    <b>Your Task:</b> Identify and save authoritative web pages for the following:<br>
+                        <ul>
+                            <li>Identify two (living) people who likely can provide some personal stories about Dr. Erdmann and his work.</li>
+                            <li>Find the three most interesting facts about Dr. Erdmann's research.</li>
+                            <li>Find an interesting potential impact of Dr. Erdmann's work.</li>
+                        </ul>
+                    <b>*Please remember that you will have up to 20 minutes to search on this assignment, and you may stop whenever you think you have found enough information for this assignment within 20 minutes.</b>                   
+                    <br>
+                    <h6 style="text-align: center;">
+                    <a href="http://127.0.0.1:8000/task/pre_task_annotation">Enter this task</a>
+                    </h6>
+                </details>
+                <br>
+        </div>
+
+        <div id="task8">
+            <h6><b>Task 8:</b> IP/ME Interview Preparation - Methane Clathrates</h6>
+                <details>
+                    <b>Your Assignment:</b> You are writing an article that profiles a scientist and their research work. You are preparing to interview Igor Semiletov, an expert in chemical oceanography, about Arctic greenhouse gases and global warming.<br>
+                    <b>Your Task:</b> Identify and save authoritative web pages for the following:<br>
+                        <ul>
+                            <li>Identify two (living) people who likely can provide some personal stories about Dr. Semiletov and his work.</li>
+                            <li>Find the three most interesting facts about Dr. Semiletov's research.</li>
+                            <li>Find an interesting potential impact of Dr. Semiletov's work.</li>
+                        </ul>
+                    
+                    <b>*Please remember that you will have up to 20 minutes to search on this assignment, and you may stop whenever you think you have found enough information for this assignment within 20 minutes.</b>                   
+                    <br>
+                    <h6 style="text-align: center;">
+                    <a href="http://127.0.0.1:8000/task/pre_task_annotation">Enter this task</a>
+                    </h6>
+                </details>
+                <br>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('#go-partition-btn').click(
+                function () {
+                    window.location.href = '/task/partition';
+                }
+            );
+            $('#go-annotation-btn').click(
+                function () {
+                    window.location.href = '/task/annotation';
+                }
+            );
+        });        
+    </script>
+
+{% endblock %}
