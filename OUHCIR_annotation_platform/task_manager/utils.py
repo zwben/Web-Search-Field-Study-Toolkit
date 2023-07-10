@@ -41,25 +41,15 @@ def store_data(message):
 
         if message['type'] == 'SERP':
             if page_id == 1:
-                preRate = int(message["preRate"])
-                if preRate == 1:
-                    if len(Query.objects.filter(user=user, start_timestamp=int(message['start_timestamp']))) != 0:
-                        new_query = Query.objects.filter(user=user, start_timestamp=int(message['start_timestamp'])).first()
-                        new_query.query_string = message['query']
-                        new_query.interface = int(message['interface'])
-                        new_query.life_start = int(time.time())
-                        new_query.save()
-                    else:
-                        new_query = Query()
-                        new_query.user = user
-                        new_query.task_annotation = TaskAnnotation.objects.filter(annotation_status=True).first()
-                        new_query.partition_status = False
-                        new_query.annotation_status = False
-                        new_query.query_string = message['query']
-                        new_query.start_timestamp = int(message['start_timestamp'])
-                        new_query.interface = int(message['interface'])
-                        new_query.life_start = int(time.time())
-                        new_query.save()
+                # preRate = int(message["preRate"])
+                # if preRate == 1:
+                if len(Query.objects.filter(user=user, current_status = True)) != 0:
+                    new_query = Query.objects.filter(user=user, current_status = True).first()
+                    new_query.query_string = message['query']
+                    new_query.interface = int(message['interface'])
+                    new_query.life_start = int(time.time())
+                    new_query.current_status = False
+                    new_query.save()
                 else:
                     new_query = Query()
                     new_query.user = user
@@ -71,6 +61,17 @@ def store_data(message):
                     new_query.interface = int(message['interface'])
                     new_query.life_start = int(time.time())
                     new_query.save()
+                # else:
+                #     new_query = Query()
+                #     new_query.user = user
+                #     new_query.task_annotation = TaskAnnotation.objects.filter(annotation_status=True).first()
+                #     new_query.partition_status = False
+                #     new_query.annotation_status = False
+                #     new_query.query_string = message['query']
+                #     new_query.start_timestamp = int(message['start_timestamp'])
+                #     new_query.interface = int(message['interface'])
+                #     new_query.life_start = int(time.time())
+                #     new_query.save()
                 page_log.belong_query = new_query
             else:
                 nearest_log = sorted(PageLog.objects.filter(user=user, page_type='SERP', query_string=message['query']), key=lambda item: item.start_timestamp, reverse=True)[0]
@@ -84,9 +85,18 @@ def store_data(message):
         #     page_log.belong_query = Query.objects.filter(annotation_status=True).first()
         #     page_log.bookmark = message['bookmark']
         else:
-            page_log.belong_query = sorted(Query.objects.filter(user=user, current_status=True), key=lambda item: item.start_timestamp, reverse=True)[0]
+            # page_log.belong_query = sorted(Query.objects.filter(user=user), key=lambda item: item.start_timestamp, reverse=True)[0]
+            if len(Query.objects.filter(user=user, current_status = True)) != 0:
+                    new_query = Query.objects.filter(user=user, current_status = True).first()
+            else:
+                new_query = Query()
+                new_query.current_status = True
+                new_query.user = user
+                new_query.save()
+
+            page_log.belong_query = new_query
             page_log.bookmark = message['bookmark']
-        if not message['url'].startswith('http://127.0.0.1'):   # ip_to_launch should be set manually
+        if not (message['url'].startswith('http://127.0.0.1') or message['url']=='https://www.bing.com/'):   # ip_to_launch should be set manually
             page_log.save()
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()

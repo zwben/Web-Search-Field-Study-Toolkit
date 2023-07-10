@@ -3,22 +3,22 @@ if (debug) console.log("General Page is Loaded!");
 mPage.initialize = function () {
     mPage.click_results = new Array();
     mPage.click_others = new Array();
-    if (window.location.href.slice(0,21)!="http://127.0.0.1:8000") {
-        mPage.book_mark();
-        mPage.view_description();
-    }
+    // if (window.location.href.slice(0,21)!="http://127.0.0.1:8000") {
+    //     mPage.book_mark();
+    //     mPage.view_description();
+    // }
     mPage.init_content();
 };
 
-var bmreload = function () {
-    if (window.location.href.slice(0,20)!="https://www.bing.com" && window.location.href.slice(0,21)!="http://127.0.0.1:8000") {
-        if ($("button#bm-btn").length==0 || $("button#bm-btn")==null) {
-            window.location.reload();
-        }
-    }    
-}
+// var bmreload = function () {
+//     if (window.location.href.slice(0,20)!="https://www.bing.com" && window.location.href.slice(0,21)!="http://127.0.0.1:8000") {
+//         if ($("button#bm-btn").length==0 || $("button#bm-btn")==null) {
+//             window.location.reload();
+//         }
+//     }    
+// }
 
-setTimeout(bmreload, 5000);
+// setTimeout(bmreload, 5000);
 
 mPage.init_content = function () {
     mPage.title = document.title;
@@ -26,40 +26,40 @@ mPage.init_content = function () {
     // mPage.page_docs = $("body").html();
 };
 
-mPage.book_mark = function () {
-    var bm_button = document.createElement("button");
-    bm_button.setAttribute("id", "bm-btn");
-    bm_button.innerHTML = "Bookmark";
-    bm_button.style = "top:10%;right:5%;position:fixed;z-index: 9999;font-size:25px;color: #fff;background-color: #1abc9c;border-color: #1abc9c"
-    document.body.appendChild(bm_button);
-    $("button#bm-btn").click(
-        function () {
-            if (mPage.bookmark==0) {
-                mPage.bookmark=1;
-                this.innerText="Bookmarked";
-                alert("You bookmarked this page!");
-            }
-            else if (mPage.bookmark==1) {
-                mPage.bookmark=0;
-                this.innerText="Bookmark";
-                alert("Bookmark cancelled!");
-            }
-        })
+// mPage.book_mark = function () {
+//     var bm_button = document.createElement("button");
+//     bm_button.setAttribute("id", "bm-btn");
+//     bm_button.innerHTML = "Bookmark";
+//     bm_button.style = "top:10%;right:5%;position:fixed;z-index: 9999;font-size:25px;color: #fff;background-color: #1abc9c;border-color: #1abc9c"
+//     document.body.appendChild(bm_button);
+//     $("button#bm-btn").click(
+//         function () {
+//             if (mPage.bookmark==0) {
+//                 mPage.bookmark=1;
+//                 this.innerText="Bookmarked";
+//                 alert("You bookmarked this page!");
+//             }
+//             else if (mPage.bookmark==1) {
+//                 mPage.bookmark=0;
+//                 this.innerText="Bookmark";
+//                 alert("Bookmark cancelled!");
+//             }
+//         })
 
-}
+// }
 
-mPage.view_description = function () {
-    var task_description = document.createElement("div");
-    task_description.setAttribute("id", "td-btn");
-    var task_link = document.createElement("a");
-    task_link.setAttribute("href", "http://127.0.0.1:8000/task/home/");
-    task_link.setAttribute("target", "_blank");
-    task_link.innerText = "Task Description";
-    task_link.style = "font-size:25px;color: #1abc9c;background-color: #fff"
-    task_description.appendChild(task_link);
-    task_description.style = "top:20%;right:5%;position:fixed;z-index: 9999;"
-    document.body.appendChild(task_description);
-}
+// mPage.view_description = function () {
+//     var task_description = document.createElement("div");
+//     task_description.setAttribute("id", "td-btn");
+//     var task_link = document.createElement("a");
+//     task_link.setAttribute("href", "http://127.0.0.1:8000/task/home/");
+//     task_link.setAttribute("target", "_blank");
+//     task_link.innerText = "Task Description";
+//     task_link.style = "font-size:25px;color: #1abc9c;background-color: #fff"
+//     task_description.appendChild(task_link);
+//     task_description.style = "top:20%;right:5%;position:fixed;z-index: 9999;"
+//     document.body.appendChild(task_description);
+// }
 
 setTimeout(mPage.init_content, 1500);
 setTimeout(mPage.init_content, 3000);

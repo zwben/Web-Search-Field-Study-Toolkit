@@ -1,141 +1,74 @@
 # Web-Search-Field-Study-Toolkit
 
-### TODO
-Interface improvement
-
-## Updates 10/22/2021
-It can record activities on Bing now!
-
-## Updates 09/17/2021
-Environment compatibility:  
-Python 3.9.2  
-Django 3.2.7
+### This tool is used to collect behavioral data on Bing search
 
 ### Installation
-1. run once to initialize
-```bash
-python manage.py makemigrations user_system
-python manage.py makemigrations task_manager
-python manage.py migrate
-```
-2. launch the server
-```bash
-python manage.py runserver 127.0.0.1:8000
-```
 
------
+#### 1. Set up python environment
 
-Make field study easier to conduct!
+- download and install miniconda https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe
 
-[![THUIR](https://img.shields.io/badge/THUIR-ver%201.0-blueviolet)](http://www.thuir.cn)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-red.svg)](#python)
-[![made-with-js](https://img.shields.io/badge/Made%20with-JS-yellow.svg)](#javascript)
-[![repo-size](https://img.shields.io/github/repo-size/xuanyuan14/Web-Search-Field-Study-Toolkit?color=green)]()
+- open Anaconda Prompt (miniconda 3), run this commend to install the virtual environment named "web"
 
-## Introduction
-This codebase contains source-code of the field study platform of our WWW 2021 paper:
-  - [Chen, Jia, et al. "Towards a Better Understanding of Query Reformulation Behavior in Web Search." Proceedings of the Web Conference 2021. 2021.](https://dl.acm.org/doi/abs/10.1145/3442381.3450127)
+  ```bash
+  conda create -n web python=3.8.16 -y
+  ```
 
-## Overview
-<p align="center">
-  <img src="https://github.com/xuanyuan14/Web-Search-Field-Study-Toolkit/blob/master/images/overview.png">
-</p>  
+- after installing the virtual environment, run this commend to activate the environment and install the package Django
 
-## List of Recorded Information
-* Pre-query expectation: such as ```diversity```, ```result type```, ```redundancy```, ```difficulty```, ```number of relevant results```, ```effort```.
-* Query reformulation: such as ```reformulation type```, ```reformulation interface```, ```reformulation reason```, ```reformulation inspiration source```, etc.
-* Query-level result usefulness: 4-scale, 0--useless, 1--partially useful, 2--very useful, 3--serendipity.
-* Query-level and session level user satisfaction: both are 5-scale.
-* Search behavior log: such as mouse movement, search queries, and timestamps.
+  ```bash
+  conda activate web
+  conda install -c anaconda django -y
+  ```
 
-You can add or delete any function on your need. BTW, we are delighted to introduce the dataset we collected via this toolkit: [TianGong-Qref](http://www.thuir.cn/tiangong-qref/). 🤠
+#### 2. Set up the tool
 
-## Support
-Fow now, this toolkit only support the logging on Baidu and Sogou, which are two largest commercial search engines in China. We welcome anyone to implement the support for more search engines such as Google, Bing, Yahoo, and Naver.
+- under the web virtual environment, run these commends to direct to the study tool folder and then the folder where the file manage.py is located:
 
-## How to launch
-* As our toolkit use MongoDB to store data, you should first make sure that your django backend has been connected to a running MongoDB engine. Try the following script on Linux OS/MacOS to make sure that you have launched the MongoDB correctly:
-```bash
-cd /usr/local/bin
-sudo ./mongod
-```
-Then open another terminal window and run the following command:
-```bash
-cd /usr/local/bin
-./mongo
-```
-If you have any problems about MongoDB, please refer to this [tutorial](https://www.tutorialspoint.com/mongodb/index.htm).
+  ```bash
+  cd "{path to the study tool folder}"
+  cd OUHCIR_annotation_platform
+  ```
 
-* You can then launch the django backend with the following command:
-```bash
-python manage.py runserver 0.0.0.0:8000
-```
-* Install the chrome extension on your Google chrome.  
+- run these commends to initialize the database:
 
-<p align="center">
-  <img src="https://github.com/xuanyuan14/Web-Search-Field-Study-Toolkit/blob/master/images/install.png">
-</p>  
+  ```bash
+  python manage.py makemigrations user_system
+  python manage.py makemigrations task_manager
+  python manage.py migrate
+  ```
 
-* Login at the annotation platform (0.0.0.0:8000) and register a new account.
+- run this commend to launch the server
 
-* Click the extension logo and login with the account.
+  ```bash
+  python manage.py runserver 127.0.0.1:8000
+  ```
 
-<p align="center">
-  <img src="https://github.com/xuanyuan14/Web-Search-Field-Study-Toolkit/blob/master/images/login.png">
-</p>
+#### 3. Install the extension in Chrome
 
-* Now, all things get ready! Just start your field study!
+- open chrome, click the three-dot button at the upper-right corner of the browser window, go to Extensions - Manage extensions
+- enable the Developer mode at the upper-right corner of the extension page, then click "Load unpacked" button at the upper-left corner of the extension page
+- directed to the "OUHCIRChromeExtension" folder and click "Select Folder", then you will see the tool extension is added in Chrome
 
-## Some things you should notice
-* The baseURL in the extension should be the same with the base URL of the annotation platform.
-```javascript
-var baseUrl = "http://127.0.0.1:8000";
-```  
-* You should ensure that the chrome extention is on before the search, or nothing will be recorded.  
+#### 4. Sign up and login (for each user)
 
-<p align="center">
-  <img width="50" height="50" src="https://github.com/xuanyuan14/Web-Search-Field-Study-Toolkit/blob/master/images/on.png">
-</p>
+- go to http://127.0.0.1:8000/, click "Create a new account", input username and password (minimum length six numbers or characters)
+- log in with the account on both the web page and the **extension**
 
-* There may be problems in query recording if search users submit queries very frequently, e.g., submit two queries within 1 second. Please ask the participants to search with normal speed. We also welcome anyone to fix this bug.
-* Each query that has been recorded should be annotated within **48** hours, or they will be removed in case that users have forgotten the search details.
-* It is normal to have error as follows when submitting the annotations for a query. Just return the previous page and submit again.
+#### 5. Ready to use!
 
-<p align="center">
-  <img src="https://github.com/xuanyuan14/Web-Search-Field-Study-Toolkit/blob/master/images/error.png">
-</p>
+- go to bing.com and start to search, the page html, query, click, mouse movement will be collected
+- to review the collected data (require DB browser installed, https://download.sqlitebrowser.org/DB.Browser.for.SQLite-3.12.2-win64.msi), open the db file in the OUHCIR_annotation_platform folder, the task_manager_pagelog table contains the data for this study
 
-* For Baidu, you should 1) shut down the instant predicton function, and 2) set all SERPs to be opened in a new window. Without these settings, search pages will be updated merely by in-page javascript functions and our toolkit will fail to record correct information. 
 
-<p align="center">
-  <img src="https://github.com/xuanyuan14/Web-Search-Field-Study-Toolkit/blob/master/images/close.png">
-</p>
 
-<p align="center">
-  <img src="https://github.com/xuanyuan14/Web-Search-Field-Study-Toolkit/blob/master/images/setting.png">
-</p>
+### Limitations
 
-## Citation
-If you find the resources in this repo useful, please do not save your star and cite our work:
+1. This tool only works on Bing search, it will be better to set Bing as the default search engine
+2. The pagelog data will be stored only when the page is closed, please notify users to close each page before closing Chrome
+3. The clicked results belongs to the current query and SERP, searching with multiple queries without closing the previous SERP will lead to incorrect query-result connections
 
-```bibtex
-@inproceedings{chen2021towards,
-  title={Towards a Better Understanding of Query Reformulation Behavior in Web Search},
-  author={Chen, Jia and Mao, Jiaxin and Liu, Yiqun and Zhang, Fan and Zhang, Min and Ma, Shaoping},
-  booktitle={Proceedings of the Web Conference 2021},
-  pages={743--755},
-  year={2021}
-}
-```
 
-## Contact
-If you have any questions, please feel free to contact me via [chenjia0831@gmail.com]() or open an issue.
 
 ## Acknowledgement
-This toolkit is built based on the prototype systems that were used in several previous work: 
-* [Mao, Jiaxin, et al. "When does relevance mean usefulness and user satisfaction in web search?" Proceedings of the 39th International ACM SIGIR conference on Research and Development in Information Retrieval. 2016.](http://www.thuir.org/group/~YQLiu/publications/sigir2016Mao.pdf)
-* [Wu, Zhijing, et al. "The influence of image search intents on user behavior and satisfaction." Proceedings of the Twelfth ACM International Conference on Web Search and Data Mining. 2019.](http://www.thuir.org/group/~YQLiu/publications/WSDM19Wu.pdf)
-* [Zhang, Fan, et al. "Models versus satisfaction: Towards a better understanding of evaluation metrics." Proceedings of the 43rd International ACM SIGIR Conference on Research and Development in Information Retrieval. 2020.](https://static.aminer.cn/upload/pdf/1982/1327/2004/5f0277e911dc830562231df7_0.pdf)
-* [Zhang, Fan, et al. "Cascade or recency: Constructing better evaluation metrics for session search." Proceedings of the 43rd International ACM SIGIR Conference on Research and Development in Information Retrieval. 2020.](http://www.thuir.cn/group/~mzhang/publications/SIGIR2020-ZhangFan1.pdf)  
-We thank the authors for their great work.
+This toolkit is modified from the original work: https://github.com/xuanyuan14/Web-Search-Field-Study-Toolkit

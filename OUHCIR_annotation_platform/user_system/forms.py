@@ -73,7 +73,7 @@ class SignupForm(forms.Form):
         )
     )
     name = forms.CharField(
-        required=True,
+        required=False,
         label=u'Name',
         widget=forms.TextInput(
             attrs={
@@ -133,7 +133,7 @@ class SignupForm(forms.Form):
         )
     )
     search_frequency = forms.ChoiceField(
-        required=True,
+        required=False,
         choices=search_frequency_choices,
         label=u'How often fo you use search engines?',
         widget=forms.Select(
@@ -143,7 +143,7 @@ class SignupForm(forms.Form):
         )
     )
     search_history = forms.ChoiceField(
-        required=True,
+        required=False,
         choices=search_history_choices,
         label=u'How long have you been using search engines?',
         widget=forms.Select(
@@ -168,7 +168,7 @@ class SignupForm(forms.Form):
 
 class EditInfoForm(forms.Form):
     name = forms.CharField(
-        required=True,
+        required=False,
         label=u'Name',
         widget=forms.TextInput(
             attrs={
@@ -178,7 +178,7 @@ class EditInfoForm(forms.Form):
         )
     )
     sex = forms.CharField(
-        required=True,
+        required=False,
         label=u'Gender',
         widget=forms.TextInput(
             attrs={
@@ -188,7 +188,7 @@ class EditInfoForm(forms.Form):
         )
     )
     age = forms.IntegerField(
-        required=True,
+        required=False,
         label=u'Age',
         widget=forms.NumberInput(
             attrs={
@@ -198,7 +198,7 @@ class EditInfoForm(forms.Form):
         )
     )
     phone = forms.CharField(
-        required=True,
+        required=False,
         label=u'Phone Number',
         widget=forms.TextInput(
             attrs={
@@ -208,7 +208,7 @@ class EditInfoForm(forms.Form):
         )
     )
     email = forms.EmailField(
-        required=True,
+        required=False,
         label=u'E-mail Address',
         widget=forms.EmailInput(
             attrs={
@@ -218,7 +218,7 @@ class EditInfoForm(forms.Form):
         )
     )
     field = forms.CharField(
-        required=True,
+        required=False,
         label=u'Occupation',
         widget=forms.TextInput(
             attrs={
@@ -228,7 +228,7 @@ class EditInfoForm(forms.Form):
         )
     )
     search_frequency = forms.ChoiceField(
-        required=True,
+        required=False,
         choices=search_frequency_choices,
         label=u'How often fo you use search engines?',
         widget=forms.Select(
@@ -238,7 +238,7 @@ class EditInfoForm(forms.Form):
         )
     )
     search_history = forms.ChoiceField(
-        required=True,
+        required=False,
         choices=search_history_choices,
         label=u'How long have you been using search engines?',
         widget=forms.Select(

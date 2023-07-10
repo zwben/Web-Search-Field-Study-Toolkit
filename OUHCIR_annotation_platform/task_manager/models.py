@@ -144,11 +144,11 @@ class QueryAnnotation(models.Model):  # !!
     # relation = models.IntegerField()
     # 1--initial query ,2--SERP search snippets, 3--SERP other components,
     # 4--landing pages, 5--others (not acquired during search)
-    inspiration = models.IntegerField()
-    satisfaction = models.IntegerField()
-    ending_type = models.IntegerField()  # 4--sat, 3--dissat, 2--new, 1-intent shift, 0--others
-    other_reason = models.CharField(max_length=1000)
-    other_relation = models.CharField(max_length=1000)
+    inspiration = models.IntegerField(null=True, blank=True)
+    satisfaction = models.IntegerField(null=True, blank=True)
+    ending_type = models.IntegerField(null=True, blank=True)  # 4--sat, 3--dissat, 2--new, 1-intent shift, 0--others
+    other_reason = models.CharField(max_length=1000, null=True, blank=True)
+    other_relation = models.CharField(max_length=1000, null=True, blank=True)
 
 
 class SERPAnnotation(models.Model):
